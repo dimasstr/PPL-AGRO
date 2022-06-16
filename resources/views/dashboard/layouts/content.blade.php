@@ -30,11 +30,6 @@
                     <strong>Keterangan :</strong><br>
                     {{ $product -> description }} <hr>
                     <a href="/dashboard/{{ $product-> id }}/edit" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                    <form action="/dashboard/{{ $product-> id }}" method="post" class="d-inline">
-                        @method('DELETE')
-                        @csrf
-                        <button class="btn btn-danger" onclick="return confirm ('Apakah Anda yakin ingin menghapus data?')"><i class="bi bi-trash3"></i></button>
-                    </form>
                     </div>
                 </div>
             </div>

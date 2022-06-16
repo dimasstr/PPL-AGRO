@@ -20,7 +20,7 @@
                     <div class="card-header">
                         <h2>Pesanan Detail</h2>
                         <p>Pesanan Anda telah berhasil dilakukan. Silahkan untuk melanjutkan pembayaran melalui Transfer ATM Mandiri ke 0213484732 atas nama Nanis </p>
-                        @if($order->status_id == 1 || 2)
+                        @if($order->status_id != 1 && 2)
                             <p class="text-muted">Nomor Resi : {{ $order->no_resi }}</p>
                         @endif
                     </div>

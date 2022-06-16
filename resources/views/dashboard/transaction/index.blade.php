@@ -46,7 +46,11 @@
                 <tr>
                     <td>{{ $no ++ }}</td>
                     <td>{{ $transaction->tanggal_transaksi }}</td>
-                    <td>{{ $transaction->deskripsi }}</td>
+                    @if(!empty($transaction->order_id))
+                        <td align="left"><a href="/pesanan-customer-detail/{{ $transaction->deskripsi }}">Pemesanan melalui website</a></td>
+                    @else
+                        <td>{{ $transaction->deskripsi }}</td>
+                    @endif
                     <td>{{ $transaction->transactionType->jenis_transaksi }}</td>
                     <td align="right">Rp. {{ number_format($transaction->nominal) }}</td>
                     <td align="center">

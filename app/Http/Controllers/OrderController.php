@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\orderDetail;
 use App\Models\statusOrder;
 use App\Models\Transaction;
+use App\Models\transactionType;
 Use Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,13 +85,12 @@ class OrderController extends Controller
             $order->save();
 
             $transaction = new Transaction;
-            $transaction->tanggal_transaksi = $request->$tanggal;
-            $transaction->nominal = $request->jumlah_harga;
-            $transaction->deskripsi = $request->jumlah_harga/15000;
+            $transaction->tanggal_transaksi = $tanggal;
+            $transaction->nominal =  $product->price*$request->jumlah_pesan;
+            $transaction->deskripsi = $order->id;
+            $transaction->order_id = $order->id;
             $transaction->save();
         }
-
-
 
         $new_order = Order::where('user_id', Auth::user()->id)->where('status_id',0)->first();
 
@@ -117,6 +117,10 @@ class OrderController extends Controller
         $order = Order::where('user_id', Auth::user()->id)->where('status_id',0)->first();
     	$order->jumlah_harga = $order->jumlah_harga+$product->price*$request->jumlah_pesan;
     	$order->update();
+        
+        $transaction = Transaction::where('jenisTransaksi_id',1)->first();
+    	$transaction->nominal = $transaction->nominal+$product->price*$request->jumlah_pesan;
+    	$transaction->update();
 
         alert()->success('Sukses!','Produk telah ditambahkan ke keranjang!');
         return redirect('/');
@@ -142,7 +146,6 @@ class OrderController extends Controller
         $order = Order::where('id', $order_detail->order_id)->first();
         $order->jumlah_harga = $order->jumlah_harga-$order_detail->jumlah_harga;
         $order->update();
-
 
         $order_detail->delete();
 

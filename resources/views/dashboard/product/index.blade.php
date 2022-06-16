@@ -5,11 +5,6 @@
     <h1>Detail Produk</h1>
     <div class="my-3">
         <a href="/dashboard/{{ $product->id }}/edit" class="btn btn-warning">Ubah data produk</a>
-        <form action="/dashboard/{{ $product->id }}" method="post" class="d-inline">
-            @method('DELETE')
-            @csrf
-            <button class="btn btn-danger" onclick="return confirm ('Apakah Anda yakin ingin menghapus data?')">Hapus data produk</button>
-        </form>
     </div>
     <div>
         <div style="max-height: 300px; overflow:hidden;">

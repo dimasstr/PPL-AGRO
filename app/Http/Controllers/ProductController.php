@@ -133,8 +133,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect('/dashboard')->with('success', 'Data produk berhasil dihapus!');
+        // 
     }
 }

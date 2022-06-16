@@ -139,18 +139,9 @@ class TransactionController extends Controller
 
     public function graphic()
     {   
-        $total1 = Transaction::select(DB::raw("CAST(SUM(nominal) as int) as total1"))
-        ->where('jenisTransaksi_id', '=', 2)
+        $total = Transaction::select(DB::raw("CAST(SUM(nominal) as int) as total"))
         ->GroupBy(DB::raw('Month(tanggal_transaksi)'))
-        ->pluck('total1');
-        $total2 = Transaction::select(DB::raw("CAST(SUM(nominal) as int) as total2"))
-        ->where('jenisTransaksi_id', '=', 1)
-        ->GroupBy(DB::raw('Month(tanggal_transaksi)'))
-        ->pluck('total2');
-        // $total = Transaction::select(DB::raw("CAST(SUM(nominal) as int) as total"))
-        // ->where($total2 - $total1)
-        // ->GroupBy(DB::raw('Month(tanggal_transaksi)'))
-        // ->pluck('total');
+        ->pluck('total');
 
         // $bulan = Transaction::select(DB::raw("MONTHNAME(tanggal_transaksi) as bulan"))
         // ->GroupBy(DB::raw("MONTHNAME(tanggal_transaksi)"))

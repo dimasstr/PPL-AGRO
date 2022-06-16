@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {   
-    // protected $fillable = [
-    //     'tanggal_transaksi',
-    //     'nominal',
-    //     'deskripsi'
-    // ];
+    protected $fillable = [
+        'tanggal_transaksi',
+        'nominal',
+    ];
 
-    protected $guarded = [];
+    // protected $guarded = [];
 
     public function transactionType() 
     {
