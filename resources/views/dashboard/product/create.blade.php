@@ -2,6 +2,21 @@
 
 @section('container')
     
+<div class="container">
+  <div class="row">
+      <div class="bg-light text-dark rounded mb-2">
+          <div class="col-md-12 my-2">
+              <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mx-3">
+                  <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tambah Produk</li>
+              </ol>
+              </nav>
+          </div>
+      </div>
+  </div>
+</div>
+
     <div class="d-flex justify-content-between flew-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
       <h1 class="h2">Tambah Produk Baru</h1>
     </div>
@@ -29,7 +44,7 @@
             </div>
             <div class="mb-3">
               <label for="expired_date" class="form-label">Tanggal Kadaluwarsa</label>
-              <input type="date" min="0"  class="form-control @error('expired_date') is-invalid @enderror" id="expired_date" name="expired_date" required value="{{ old('expired_data') }}">
+              <input type="date" min="0"  class="form-control @error('expired_date') is-invalid @enderror" id="expired_date" name="expired_date" required value="{{ old('expired_date') }}">
               @error('expired_date')
               <div class="invalid-feedback">
                   {{ $message }}
@@ -38,7 +53,7 @@
             </div>
             <div class="mb-3">
               <label for="stock" class="form-label">Stok</label>
-              <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" name="stock" required value="{{ old('stock') }}">
+              <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" name="stock" min="1" required value="{{ old('stock') }}">
               @error('stock')
               <div class="invalid-feedback">
                   {{ $message }}

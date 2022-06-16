@@ -20,4 +20,9 @@ class Product extends Model
     ];
 
     protected $guarded = ['id'];
+
+    public function orderDetail() 
+    {
+         return $this->hasMany('App\Models\orderDetail','product_id', 'id');
+    }
 }

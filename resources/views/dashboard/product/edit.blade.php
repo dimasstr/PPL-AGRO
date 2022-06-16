@@ -2,6 +2,21 @@
 
 @section('container')
     
+<div class="container">
+  <div class="row">
+      <div class="bg-light text-dark rounded mb-2">
+          <div class="col-md-12 my-2">
+              <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mx-3">
+                  <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Edit Produk</li>
+              </ol>
+              </nav>
+          </div>
+      </div>
+  </div>
+</div>
+
     <div class="d-flex justify-content-between flew-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h1 class="h2">Edit Produk</h1>
     </div>
@@ -39,7 +54,7 @@
             </div>
             <div class="mb-3">
               <label for="stock" class="form-label">Stok</label>
-              <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" name="stock" required value="{{ old('stock', $product->stock) }}">
+              <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" name="stock" min="1" required value="{{ old('stock', $product->stock) }}">
               @error('stock')
               <div class="invalid-feedback">
                   {{ $message }}

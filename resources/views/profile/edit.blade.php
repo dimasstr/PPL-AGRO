@@ -1,9 +1,25 @@
-@extends('dashboard.layouts.main')
+@extends('layouts.main')
 
 @section('container')
-    
+
+<div class="container">
+  <div class="row">
+      <div class="bg-light text-dark rounded mb-2">
+          <div class="col-md-12 my-2">
+              <nav aria-label="breadcrumb">
+              <ol class="breadcrumb mx-3">
+                  <li class="breadcrumb-item"><a href="/">Home</a></li>
+                  <li class="breadcrumb-item"><a href="/profile">Profile</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Edit Profile</li>
+              </ol>
+              </nav>
+          </div>
+      </div>
+  </div>
+</div>
+
     <div class="d-flex justify-content-between flew-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h1 class="h2">Edit Data Toko</h1>
+        <h1 class="h2">Edit Profile</h1>
     </div>
     
     <div class="col-lg-6">
@@ -37,16 +53,17 @@
               </div>
               @enderror
             </div>
-            {{-- <div class="mb-3">
+            <div class="mb-3">
                 <strong><label for="password" class="form-label">Password</label></strong>
-                <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" 
-                name="password" required value="{{ old('password', $customer->password) }}">
+                <p class="text-muted gy-2">*Jika tidak ingin diganti, bisa dikosongi.</p>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" 
+                name="password">
                 @error('password')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror
-            </div> --}}
+            </div>
             <div class="my-4">
               <a href="/profile" class="btn btn-secondary">Kembali ke Profile</a>
               <button type="submit" class="btn btn-primary">Ubah</button>

@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('since');
             $table->string('owner');
             $table->string('email');
-            $table->string('email_owner');
+            $table->string('email_owner')->nullable();
             $table->string('telephone');
             $table->string('address');
-            $table->string('medsoc');
+            $table->string('medsoc')->nullable();
             $table->timestamps();
         });
     }

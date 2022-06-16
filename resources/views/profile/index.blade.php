@@ -9,6 +9,21 @@
   </div>
 @endif
 
+<div class="container">
+    <div class="row">
+        <div class="bg-light text-dark rounded mb-2">
+            <div class="col-md-12 my-2">
+                <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mx-3">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -33,8 +48,10 @@
             <th scope="row">Nomor Telepon</th>
             <td>{{ auth()->user()->telephone }}</td>
         </tr>
-        <tr>
+        {{-- <tr>
             <th scope="row">Password</th>
             <td>{{ auth()->user()->password }}</td>
-        </tr>
+        </tr> --}}
+    </tbody>
+</table>
 @endsection

@@ -28,7 +28,9 @@ class DashboardAboutController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.about.create', [
+            'title' => 'Data Toko Baru'
+        ]);
     }
 
     /**
@@ -39,7 +41,23 @@ class DashboardAboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'store_name' => 'required|max:20',
+            'since' => 'required|max:5',
+            'owner' => 'required|max:50',
+            'email' => 'required|max:50|email:dns',
+            'email_owner' => 'required|max:50|email:dns',
+            'telephone' => 'required',
+            'address' => 'required',
+            'medsoc' => 'required'
+        ]);
+        
+        $validatedData['id'] = auth()->user()->id;
+        
+        About::create($validatedData);
+
+        alert()->success('Sukses!','Data Toko berhasil ditambahkan!');
+        return redirect('/tentang-kami');
     }
 
     /**
@@ -82,16 +100,20 @@ class DashboardAboutController extends Controller
             'since' => 'required|max:5',
             'owner' => 'required|max:50',
             'email' => 'required|max:50|email:dns',
+            'email_owner' => 'required|max:50|email:dns',
             'telephone' => 'required',
             'address' => 'required',
-            'medsoc' => 'required'
+            'medsoc' => 'max:255'
         ]);
         
         $validatedData['id'] = auth()->user()->id;
 
         $abouts = About::find($id)->update($validatedData);
 
-        return redirect('/tentang-kami')->with('success', 'Data toko berhasil diubah!');
+        // return back()->with('validasi');
+
+        alert()->success('Sukses!','Data Toko berhasil diubah!');
+        return redirect('/tentang-kami');
     }
 
     /**

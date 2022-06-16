@@ -13,7 +13,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $products = Product::all();
         return view('dashboard.layouts.content', [
             'title' => 'Dashboard',
@@ -111,7 +111,7 @@ class ProductController extends Controller
         // if($request->variant != $product->variant) {
         //     $rules['variant'] = 'required|max:20|unique:products';
         // }
-
+        
         $validatedData = $request->validate($rules);
 
         $validatedData['id'] = auth()->user()->id;

@@ -22,10 +22,14 @@ class LoginController extends Controller
 
             if(Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-                return redirect()->intended('/');
+                if(Auth::User()->email == 'diimasatria@gmail.com'){
+                    return redirect()->intended('/dashboard');
+                }else{
+                    return redirect()->intended('/');
+                }
             }
-
             return back()->with('loginError', 'Email atau Password salah!');
+
     }
     
     public function logout(Request $request)
@@ -34,6 +38,16 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         
-        return redirect('/');
+        return redirect()->to('/');
+
+        // $credentials = $request->validate([
+        //     'email' => ['required', 'email:dns'],
+        //     'password' => ['required']
+        // ]);
+
+        // if(Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+        //     return redirect()->to('/');
+        // }
     }
 }

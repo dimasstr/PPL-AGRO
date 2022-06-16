@@ -10,14 +10,17 @@
                 <div style="max-height: 400px; overflow:hidden;">
                     <img src="{{ asset('storage/'.$product->image) }}" class="card-img-top" alt="..." style="height: 214px; max-height: 200px">
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="height: 520px">
                 <h5 class="card-title">{{ $product -> product_name }}</h5><br>
                 <strong>Variant :</strong>  {{ $product -> variant }} <br>
                 <strong>Harga :</strong>  Rp {{ $product -> price }} <br> 
                 <strong>Stok :</strong>  {{ $product -> stock }} <br> 
                 <strong>Tanggal Kadaluwarsa :</strong>  {{ $product -> expired_date }} <br> <hr>
-                <strong>Keterangan :</strong><br>
-                {{ $product -> description }}
+                <strong>Keterangan :</strong><br> 
+                {{ $product -> description }} <hr>
+                @can('customer')
+                <a href="/pesanan/{{$product->id}}" class="btn btn-primary" style="float: bottom">Pesan</a>
+                @endcan
                 </div>
             </div>
         </div>

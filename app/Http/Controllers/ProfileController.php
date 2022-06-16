@@ -79,15 +79,21 @@ class ProfileController extends Controller
             'name' => 'required|max:50',
             'address' => 'required',
             'telephone' => 'required|max:15',
-            // 'email' => 'required|max:50|email:dns|unique:users',
-            // 'password' => 'required|min:5|max:10',
+            'password' => 'max:10',
         ]);
 
-        $validatedData['id'] = auth()->user()->id;
+        $user = User::where('id', auth()->user()->id)->first();
+    	$user->name = $request->name;
+    	$user->address = $request->address;
+    	$user->telephone = $request->telephone;
+    	if(!empty($request->password))
+    	{
+    		$user->password = Hash::make($request->password);
+    	}
+    	$user->update();
 
-        $customer = User::find($id)->update($validatedData);
-
-        return redirect('/profile')->with('success', 'Profile berhasil diubah!');
+        alert()->success('Sukses!','Profile berhasil diubah!');
+        return redirect('/profile');
     }
 
     /**
