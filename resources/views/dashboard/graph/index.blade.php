@@ -21,13 +21,26 @@
         <div class="card-header">
             <div class="row mt-2">
                 <div class="col-lg-4">
+                    <h3>Grafik Pendapatan</h3>
+                    <p>Grafik Pendapatan pada tahun ini.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="grafik-pendapatan"></div>
+        </div>
+    </div>
+    <div class="card mt-5">
+        <div class="card-header">
+            <div class="row mt-2">
+                <div class="col-lg-4">
                     <h3>Grafik Penjualan</h3>
                     <p>Grafik penjualan pada tahun ini.</p>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <div id="grafik"></div>
+            <div id="grafik-penjualan"></div>
         </div>
     </div>
 </div>
@@ -66,7 +79,7 @@
                                         </script> --}}
 <script> 
                                         
-Highcharts.chart('grafik', {
+Highcharts.chart('grafik-pendapatan', {
 
     title: {
         text: 'Grafik Pendapatan Bulanan'
@@ -96,6 +109,38 @@ Highcharts.chart('grafik', {
         name: 'Pendapatan',
         data: {!! json_encode($total) !!}
     }],
+
+});
+Highcharts.chart('grafik-penjualan', {
+
+title: {
+    text: 'Grafik Penjualan Bulanan'
+},
+
+subtitle: {
+    text: 'Statistik penjualan bisnis Anda'
+},
+
+yAxis: {
+    title: {
+        text: 'Penjualan Bulanan'
+    }
+},
+
+xAxis: {
+    categories: {!! json_encode($bulan) !!}
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+series: [{
+    name: 'Penjualan',
+    data: {!! json_encode($order) !!}
+}],
 
 });
 </script>

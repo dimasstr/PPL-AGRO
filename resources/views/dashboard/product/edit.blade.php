@@ -78,6 +78,7 @@
                   {{ $message }}
               </div>
               @enderror
+            </div>  
             <div class="mb-3">
               <label for="description" class="form-label">Deskripsi</label>
               <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" 

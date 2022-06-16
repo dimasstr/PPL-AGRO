@@ -142,12 +142,18 @@ class TransactionController extends Controller
         $total = Transaction::select(DB::raw("CAST(SUM(nominal) as int) as total"))
         ->GroupBy(DB::raw('Month(tanggal_transaksi)'))
         ->pluck('total');
+        
+        $order = Order::select(DB::raw("COUNT(*) as count"))
+        ->whereYear('created_at', date('Y'))
+        ->GroupBy(DB::raw('Month(created_at)'))
+        ->pluck('count');
 
-        // $bulan = Transaction::select(DB::raw("MONTHNAME(tanggal_transaksi) as bulan"))
-        // ->GroupBy(DB::raw("MONTHNAME(tanggal_transaksi)"))
-        // ->pluck('bulan');
+        $bulan = Order::select(DB::raw("MONTHNAME(created_at) as bulan"))
+        ->where
+        ->GroupBy(DB::raw("MONTHNAME(created_at)"))
+        ->pluck('bulan');
 
-        return view('dashboard.graph.index', compact('total'), [
+        return view('dashboard.graph.index', compact('total', 'order', 'bulan'), [
             "title" => "Grafik Transaksi"
         ]);
     }

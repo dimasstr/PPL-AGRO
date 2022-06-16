@@ -13,7 +13,7 @@ Use Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function generate_string($input, $strength = 16) {
     $input_length = strlen($input);
     $random_string = '';
@@ -41,6 +41,9 @@ class OrderController extends Controller
         $validatedData = $request->validate([
             'image' => 'image|file|max:2048',
         ]);
+        // [
+        //     'image.required' => 'Bukti pembayaran masih kosong!'
+        // ]);
 
         if($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('payment');
